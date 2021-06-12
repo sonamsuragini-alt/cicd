@@ -21,6 +21,7 @@
         <version>3.2.1</version>
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
+          <finalname>jenkins-docker-int</finalname>
         </configuration>
       </plugin>
     </plugins>
