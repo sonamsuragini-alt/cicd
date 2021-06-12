@@ -13,7 +13,7 @@
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
-          <finalname>jenkins-docker-integration demo</finalname>
+          <finalname>jenkins-docker-integration-demo</finalname>
         </configuration>
       </plugin>
       <plugin>
