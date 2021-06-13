@@ -1,4 +1,4 @@
 FROM openjdk
 EXPOSE 8080
-ADD master/jenkins-docker-integration-demo.jar jenkins-docker-integration-demo.jar
-ENTRYPOINT ["java","-jar","/jenkins-docker-integration-demo.jar"]
+ADD target\onlinebookstore-0.0.1-SNAPSHOT.war onlinebookstore-0.0.1-SNAPSHOT.war
+ENTRYPOINT ["java","-jar","onlinebookstore-0.0.1-SNAPSHOT.war"]
