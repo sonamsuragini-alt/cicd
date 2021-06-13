@@ -1,4 +1,4 @@
-FROM openjdk
+FROM openjdk:8
 EXPOSE 8080
-COPY target/onlinebookstore-0.0.1-SNAPSHOT.war /onlinebookstore-0.0.1-SNAPSHOT.war
-ENTRYPOINT ["java","-jar","/onlinebookstore-0.0.1-SNAPSHOT.war"]
+COPY target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
