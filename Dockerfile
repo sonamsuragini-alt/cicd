@@ -1,4 +1,4 @@
-FROM tomcat:latest
-ADD */*.war */tomcat/webapps/
-EXPOSE 8080
-CMD [“catalina.sh”, “run”]
+FROM openjdk:8
+ADD */*.war onlinebookstore-0.0.1-SNAPSHOT.war
+EXPOSE 8085
+ENTRYPOINT ["java","-jar","onlinebookstore-0.0.1-SNAPSHOT.war"]
