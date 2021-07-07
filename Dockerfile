@@ -1,4 +1,4 @@
-FROM openjdk:8
-ADD */*.war onlinebookstore-0.0.1-SNAPSHOT.war
-EXPOSE 8085
-ENTRYPOINT ["java","-jar","onlinebookstore-0.0.1-SNAPSHOT.war"]
+FROM java:8
+EXPOSE 8080
+ADD /target/*.war snapshot.war
+ENTRYPOINT ["java","-jar","snapshot.war"]
