@@ -30,7 +30,7 @@ jobs:
       - name: Unzipping and installing
         run: unzip dependency-check-6.2.2-release.zip && ls -l dependency-check/bin/dependency-check.sh -s .
       - name: Upload Test results
-        uses: 'sonamsuragini-alt/jenkins-docker@J@EE'
+        uses: 'sonamsuragini-alt/jenkins-docker@J2EE'
         with:
           name: my-artifact
           path: ${{ github.workspace }}
