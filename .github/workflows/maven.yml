@@ -11,7 +11,7 @@ on:
 
 jobs:
 
- securitytest:
+ build:
 
     runs-on: ubuntu-latest
     steps:
