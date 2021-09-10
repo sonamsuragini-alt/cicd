@@ -22,7 +22,7 @@ jobs:
       - name: Build Project With Maven
         run: mvn clean install
       - name: Depcheck
-        uses: sonamsuragini-alt/jenkins-docker@v2
+        uses: sonamsuragini-alt/jenkins-docker@1.0.0
         id:  Depcheck
         with:
           project: 'test'
