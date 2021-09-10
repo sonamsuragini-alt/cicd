@@ -30,6 +30,6 @@ jobs:
     - name: Unzipping and installing
       run: unzip dependency-check-6.2.2-release.zip && ls -l dependency-check/bin/dependency-check.sh -s .
     - name: Upload Test results
-      uses: actions/upload-artifact@J2EE
+      uses: actions/upload-artifact@v2
       with:
            name: Depcheck report
