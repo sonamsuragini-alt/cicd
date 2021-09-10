@@ -22,7 +22,7 @@ jobs:
       - name: Build Project With Maven
         run: mvn clean install
       - name: Depcheck
-        uses: dependency-check/Dependency-Check_Actions@main
+        uses: dependency-check/Dependency-Check_Actions@v2
         id:  Depcheck
         with:
           project: 'test'
