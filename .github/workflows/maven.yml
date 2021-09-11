@@ -19,6 +19,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: tomcat deploy
+        run: curl -v -u admin:letmein -T /home/runner/work/jenkins-docker/jenkins-docker/target/onlinebookstore-0.0.1-SNAPSHOT.war http://localhost:8083/onlinebookstore/
+
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
