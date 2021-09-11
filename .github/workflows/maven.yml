@@ -4,10 +4,9 @@
 name: Build
 on:
   push:
-    branches:
-      - master
+    branches: [ J2EE ]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [ J2EE ]
 jobs:
   build:
     name: Build
