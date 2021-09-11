@@ -46,9 +46,9 @@
   		<artifactId>javax.servlet-api</artifactId>
   		<version>3.1.0</version>
   	</dependency>
-	  <properties>
+	</dependencies>
+       <properties>
             <sonar.organization>sonamsuragini-alt</sonar.organization>
             <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-          </properties>
-  </dependencies>
+      </properties>
 </project>
