@@ -46,7 +46,7 @@ jobs:
           format: 'HTML'    
           others: ''
       - name: Upload Test results
-        uses: actions/upload-artifact@J2EE
+        uses: sonamsuragini-alt/jenkins-docker@v2
         with:
            name: Depcheck report
            path: ${{github.workspace}}/reports
