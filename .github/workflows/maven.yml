@@ -40,4 +40,5 @@ jobs:
         uses: edplato/trufflehog-actions-scan@v0.9k-beta
       - name: DevSkim
         uses: microsoft/DevSkim-Action@v1
-  
+        with: 
+           directory-to-scan: sonamsuragini-alt/jenkins-docker@J2EE
