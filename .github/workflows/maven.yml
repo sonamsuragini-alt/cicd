@@ -31,8 +31,7 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: tomcat deploy
-        run: curl -T /home/runner/work/jenkins-docker/jenkins-docker/target/onlinebookstore-0.0.1-SNAPSHOT.war http://localhost:8091
+
       - name: OWASP ZAP
         uses: zaproxy/action-baseline@v0.4.0
         with:
