@@ -34,16 +34,7 @@ jobs:
       - name: tomcat deploy
         run: curl -v -T /home/runner/work/jenkins-docker/jenkins-docker/target/onlinebookstore-0.0.1-SNAPSHOT.war http://localhost:8091
 
-      - name: OWASP ZAP
-        uses: zaproxy/action-baseline@v0.4.0
-        with:
-           # Target URL
-           target: "http://localhost:8091"
-           fail_action: false
-           docker_name: owasp/zap2docker-stable
-           token: ${{ github.token }}
-           issue_title: Security Tests
-
+     
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -64,3 +55,12 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
          sarif_file: devskim-results.sarif
+      - name: OWASP ZAP
+        uses: zaproxy/action-baseline@v0.4.0
+        with:
+           # Target URL
+           target: "http://localhost:8091"
+           fail_action: false
+           docker_name: owasp/zap2docker-stable
+           token: ${{ github.token }}
+           issue_title: Security Tests
