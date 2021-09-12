@@ -31,20 +31,19 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Deploy my app
-        uses: chrnorm/deployment-action@releases/v1
-        id: deployment
-        with:
-          token: "${{ github.token }}"
-          target_url: http://localhost:8091/onlinebookstore/index.html
-          environment: production
+      - name: tomcat deploy
+        run: curl -v -T /home/runner/work/jenkins-docker/jenkins-docker/target/onlinebookstore-0.0.1-SNAPSHOT.war http://localhost:8091
+
       - name: OWASP ZAP
         uses: zaproxy/action-baseline@v0.4.0
         with:
            # Target URL
-           target: http://localhost:8091/onlinebookstore/index.html
+           target: "http://localhost:8091"
            fail_action: false
            docker_name: owasp/zap2docker-stable
+           token: ${{ github.token }}
+           issue_title: Security Tests
+
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
