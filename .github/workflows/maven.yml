@@ -36,7 +36,6 @@ jobs:
         uses: zaproxy/action-baseline@v0.4.0
         with:
            # Target URL
-           target: "http://localhost:8091"
            fail_action: false
            docker_name: owasp/zap2docker-stable
       - name: Build and analyze
