@@ -31,7 +31,13 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-
+      - name: Deploy my app
+        uses: chrnorm/deployment-action@releases/v1
+        id: deployment
+        with:
+          token: "${{ github.token }}"
+          target_url: http://localhost:8091/onlinebookstore/
+          environment: production
       - name: OWASP ZAP
         uses: zaproxy/action-baseline@v0.4.0
         with:
