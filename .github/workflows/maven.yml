@@ -38,3 +38,6 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sonamsuragini-alt_jenkins-docker
       - name: Trufflehog Actions Scan
         uses: edplato/trufflehog-actions-scan@v0.9k-beta
+      - name: DevSkim
+        uses: microsoft/DevSkim-Action@v1
+  
