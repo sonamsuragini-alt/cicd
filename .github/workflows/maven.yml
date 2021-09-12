@@ -37,16 +37,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sonamsuragini-alt_jenkins-docker
-        
-      - name: tomcat deploy
-        run: curl -v -u tomcat:tomcat -T /home/runner/work/jenkins-docker/jenkins-docker/target/onlinebookstore-0.0.1-SNAPSHOT.war http://localhost:8083
-
-      - name: OWASP ZAP
-        uses: zaproxy/action-baseline@v0.4.0
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
         with:
-           # Target URL
-           target: "http://localhost:8081/onlinebookstore/index.html"
-           fail_action: false
-           docker_name: owasp/zap2docker-stable
-           token: ${{ github.token }}
-           issue_title: Security Tests
+          project: 'test'
+          path: '.'
+          format: 'HTML'    
+          others: ''
+      - name: Upload Test results
+        uses: actions/upload-artifact@J2EE
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports
+        
