@@ -92,7 +92,7 @@ jobs:
         with:
          task-definition: first-run-task-definition.json
          container-name: tomcat-webserver
-         image: ${{ steps.build-image.outputs.image }}
+         image: tomcat
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
