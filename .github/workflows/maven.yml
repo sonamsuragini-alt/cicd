@@ -95,6 +95,7 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: myapp
-          cluster: cloudblog
+          task-definition: ${{ steps.cgafrica-new-backend-task.outputs.task-definition }}
+          service: cgafrica-backend-service
+          cluster: cgafrica-backend-cluster
+          wait-for-service-stability: true
