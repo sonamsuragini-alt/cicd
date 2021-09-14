@@ -55,12 +55,4 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
          sarif_file: devskim-results.sarif
-      - name: OWASP ZAP
-        uses: zaproxy/action-baseline@v0.4.0
-        with:
-           # Target URL
-           target: "http://localhost:8091"
-           fail_action: false
-           docker_name: owasp/zap2docker-stable
-           token: ${{ github.token }}
-           issue_title: Security Tests
+    
