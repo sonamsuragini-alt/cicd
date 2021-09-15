@@ -100,4 +100,3 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: tomcat-webserver-service
           cluster: demoapp1
-          wait-for-service-stability: true
