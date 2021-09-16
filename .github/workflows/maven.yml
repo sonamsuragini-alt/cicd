@@ -81,7 +81,7 @@ jobs:
         id: build-image
         env:
          ECR_REGISTRY: public.ecr.aws/k6l1v7a8
-         ECR_REPOSITORY: demoappsecs
+         ECR_REPOSITORY: demoapp
          IMAGE_TAG: ${{ github.sha }}
         run: |
          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -100,3 +100,4 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: tomcat-webserver-service
           cluster: demoapp1
+          wait-for-service-stability: true
