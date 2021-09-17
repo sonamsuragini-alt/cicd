@@ -103,12 +103,12 @@ jobs:
          task-definition: first-run-task-definition.json
          container-name: tomcat-webserver
          image: ${{ steps.build-image.outputs.image }}
-      - name: Deploy Amazon ECS task definition
-        uses: clareliguori/amazon-ecs-deploy-task-definition@master
-        with:
+      -  name: Amazon ECS "Deploy Task Definition" Action for GitHub Actions
+         uses: aws-actions/amazon-ecs-deploy-task-definition@v1.0
+         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }} 
           service: sample-app-service
-          cluster: democluster12
+          cluster: demoapp1
           wait-for-service-stability: true
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.3.0
