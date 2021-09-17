@@ -38,8 +38,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: sonamsuragini
-          password: $Sonal2017
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -67,14 +67,16 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
          sarif_file: devskim-results.sarif
-      - name: Depcheck
-        uses: sonamsuragini-alt/cicd@v2
-        id:  Depcheck
+      - name: Downloading OWASP Dependency Check
+        run: wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.2.2/dependency-check-6.2.2-release.zip
+      - name: Unzipping and installing
+        run: unzip dependency-check-6.2.2-release.zip && ls -l dependency-check/bin/dependency-check.sh -s .
+      - name: Upload Test results
+        uses: 'actions/upload-artifact@master'
         with:
-          project: 'cicd'
-          path: '.'
-          format: 'HTML'
-          others: ''
+          name: my-artifact
+          path: ${{ github.workspace }}
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -112,3 +114,12 @@ jobs:
         uses: zaproxy/action-baseline@v0.3.0
         with:
           target: 'http://3.87.25.214:8080/onlinebookstore/index.html'
+      - name: Deploy new docker image kubernetes
+        uses: kodermax/kubectl-aws-eks@master
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-west-2
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_BASE_64_ENCODED }} 
+          KUBE_NAMESPACE: kube-system
+          RELEASE_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.RELEASE_REVISION }}
