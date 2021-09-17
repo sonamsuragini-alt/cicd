@@ -107,7 +107,7 @@ jobs:
          uses: aws-actions/amazon-ecs-deploy-task-definition@v1
          with:
           task-definition: ${{ steps.task-def.outputs.task-definition }} 
-          service: sample-app-service
+          service: tomcat-webserver-service
           cluster: demoapp1
           wait-for-service-stability: true
       - name: ZAP Scan
