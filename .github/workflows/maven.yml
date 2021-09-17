@@ -104,7 +104,7 @@ jobs:
          container-name: tomcat-webserver
          image: ${{ steps.build-image.outputs.image }}
       -  name: Amazon ECS "Deploy Task Definition" Action for GitHub Actions
-         uses: aws-actions/amazon-ecs-deploy-task-definition@v1.0
+         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
          with:
           task-definition: ${{ steps.task-def.outputs.task-definition }} 
           service: sample-app-service
