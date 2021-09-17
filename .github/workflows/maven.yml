@@ -68,7 +68,7 @@ jobs:
         with:
          sarif_file: devskim-results.sarif
       - name: Depcheck
-        uses: sonamsuragini-alt/cicd@maven
+        uses: sonamsuragini-alt/cicd@v2
         id:  Depcheck
         with:
           project: 'cicd'
