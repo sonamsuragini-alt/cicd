@@ -81,7 +81,7 @@ jobs:
         id: build-image
         env:
          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-         ECR_REPOSITORY: demoapp
+         ECR_REPOSITORY: clusterdemo
          IMAGE_TAG: ${{ github.sha }}
         run: |
          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -101,3 +101,7 @@ jobs:
           service: tomcat-webserver-service
           cluster: demoapp1
           wait-for-service-stability: true
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.3.0
+        with:
+          target: 'http://3.87.25.214:8080/onlinebooksore/index.html'
