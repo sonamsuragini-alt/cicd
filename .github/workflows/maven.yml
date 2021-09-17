@@ -103,17 +103,17 @@ jobs:
          task-definition: first-run-task-definition.json
          container-name: tomcat-webserver
          image: ${{ steps.build-image.outputs.image }}
-      -  name: Amazon ECS "Deploy Task Definition" Action for GitHub Actions
-         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }} 
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: tomcat-webserver-service
           cluster: demoapp1
           wait-for-service-stability: true
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.3.0
         with:
-          target: 'http://3.237.101.85:8080/onlinebookstore/index.html'
+          target: 'http://3.87.25.214:8080/onlinebookstore/index.html'
       - name: Deploy new docker image kubernetes
         uses: kodermax/kubectl-aws-eks@master
         env:
