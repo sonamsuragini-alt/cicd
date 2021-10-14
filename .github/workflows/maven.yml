@@ -67,6 +67,19 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
          sarif_file: devskim-results.sarif
+         
+      - name: Run Threagile
+        id: threagile
+        uses: threagile/run-threagile-action@v1
+        with:
+          model-file: 'threagile.yaml'
+     
+      # Archive resulting files as artifacts
+      - name: Archive Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: threagile-report
+          path: threagile/output
       - name: Downloading OWASP Dependency Check
         run: wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.2.2/dependency-check-6.2.2-release.zip
       - name: Unzipping and installing
